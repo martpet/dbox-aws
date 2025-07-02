@@ -34,7 +34,7 @@ export class Webhook extends Construct {
       this.eventTarget = new targets.ApiDestination(destination);
     } else {
       const fn = new lambda.Function(this, "LambdaProxy", {
-        runtime: lambda.Runtime.NODEJS_18_X,
+        runtime: lambda.Runtime.NODEJS_22_X,
         handler: "index.handler",
         environment: { API_KEY: secret.secretValue.unsafeUnwrap() },
         code: lambda.Code.fromInline(`
