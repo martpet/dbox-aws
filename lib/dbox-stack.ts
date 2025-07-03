@@ -110,5 +110,18 @@ export class DboxStack extends cdk.Stack {
       sqsVisibilityTimeout: 1.5,
       eventSource: "dbox.csv-processor",
     });
+
+    new MediaProcessor(this, "Highlight", {
+      ...baseProcessorProps,
+      lambdaPath: path.join(__dirname, "/media-processors/highlight/lambda"),
+      lambdaLayerPath: path.join(
+        __dirname,
+        "/media-processors/highlight/lambda-layer.zip"
+      ),
+      lambdaMemorySize: 512,
+      lambdaTimeout: 1,
+      sqsVisibilityTimeout: 1.5,
+      eventSource: "dbox.highlight-processor",
+    });
   }
 }
